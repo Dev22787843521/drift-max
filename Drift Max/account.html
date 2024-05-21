@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝔇𝔯𝔦𝔣𝔱 𝔐𝔞𝔵</title>
+    <link rel="stylesheet" href="account.css">
+    <link rel="icon" href="ICO/i.png">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <div class="background-video">
+        <video id="background-video" autoplay loop muted>
+            <source src="VIDEO/pinterest-video75.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="content">
+        <h1>𝔇𝔯𝔦𝔣𝔱 𝔐𝔞𝔵</h1>
+        <p>aims to bring a new experience to your game play.</p>
+        <div class="btn-container">
+            <div id="google-sign-up"></div>
+            <button class="btn rgb-btn1" onclick="navigateToLogin()">To enter</button>
+        </div>
+    </div>
+
+    <script>
+        function navigateToLogin(){
+            window.location.href = "login.html";
+        }
+
+        window.onload = function() {
+            google.accounts.id.initialize({
+                client_id: 'YOUR_CLIENT_ID',
+                callback: handleCredentialResponse
+            });
+            google.accounts.id.renderButton(
+                document.getElementById('google-sign-up'),
+                { theme: "outline", size: "large" }
+            );
+            google.accounts.id.prompt(); // also display the One Tap dialog
+        }
+
+        function handleCredentialResponse(response) {
+            console.log("Encoded JWT ID token: " + response.credential);
+            // Here you can save the login using the credential token
+            // Example: send the token to your server for authentication
+            // window.location.href = "login.html"; // Redirect to login page after saving
+        }
+    </script>
+</body>
+</html>
